@@ -1,0 +1,9 @@
+.input {
+  width: 300px;
+  margin: 0 auto;
+  margin-bottom: 30px;
+  display: block;
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid #212121;
+}
