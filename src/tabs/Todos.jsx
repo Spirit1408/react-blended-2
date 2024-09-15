@@ -1,17 +1,31 @@
-import { Text, Form } from "components";
-import { nanoid } from "nanoid";
-import { useState } from "react";
+import { Text, Form } from 'components';
+import { TodoList } from 'components';
+import { nanoid } from 'nanoid';
+import { useState } from 'react';
 
 export const Todos = () => {
-	const [todos, setTodos] = useState([]);
-	// return <Text textAlign="center">There are no any todos ...</Text>;
-	const addTask = (text) => {
-		const todo = {
-			text,
-			id: nanoid(),
-		};
-		setTodos((prev) => [...prev, todo]);
-	};
-  console.log(todos)
-	return <Form onSubmit={addTask} />;
+  const [todos, setTodos] = useState([]);
+
+  const addTask = text => {
+    const todo = {
+      text,
+      id: nanoid(),
+    };
+    setTodos(prev => [...prev, todo]);
+  };
+
+  const deleteTodo = id => {
+    setTodos(prev => prev.filter(item => item.id !== id));
+  };
+  return (
+    <>
+      <Form onSubmit={addTask} />
+
+      {todos.length ? (
+        <TodoList todos={todos} deleteTodo={deleteTodo} />
+      ) : (
+        <Text textAlign="center">There are no any todos ...</Text>
+      )}
+    </>
+  );
 };
